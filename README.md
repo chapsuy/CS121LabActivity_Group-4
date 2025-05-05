@@ -1,3 +1,3 @@
 
 
-<b>Group Members<\b>
+<b>Group Members
