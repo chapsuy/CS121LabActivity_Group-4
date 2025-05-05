@@ -1,0 +1,101 @@
+#MediaFile Program
+#Audio: MP3, WAV, FLAC, AAC.
+#Video: MP4, AVI, MKV, MOV.
+
+
+
+
+from abc import ABC, abstractmethod
+
+class MediaFile(ABC):
+    def __init__(self,file_name,file_size):
+        self.file_name = file_name
+        self.file_size = file_size
+
+
+
+    @abstractmethod
+    def play(self):
+        pass
+    @abstractmethod
+    def pause(self):
+        pass
+    @abstractmethod
+    def stop(self):
+        pass
+
+class Mp3(MediaFile):
+    def __init__(self,file_name,file_size):
+        super().__init__(file_name,file_size)
+        self.mode="none"
+
+    def setMode(self,mode):
+        if mode.lower() in ["loop","shuffle"]:
+            self.mode=mode.lower()
+
+        else:
+            self.mode="none"
+
+    def play(self):
+        print(f"Now playing: {self.file_name}.mp3")
+        print(f"File Size:{self.file_size}MB")
+        print(f"Mode is set to: {self.mode}")
+
+    def pause(self):
+        print(f"{self.file_name}.mp3 is currently paused.")
+    def stop(self):
+        print(f"{self.file_name}.mp3 is no longer playing.")
+
+
+#Dito Maglagay ng subclass
+
+
+
+
+
+
+
+
+#Dito Maglagay ng subclass
+
+
+
+
+
+
+
+
+
+#Dito maglagay ng subclass
+
+
+
+#Main Program
+
+print("="*59)
+print("*"*59)
+print()
+print()
+print(" [1]. MP3\n [2].\n [3].\n [4].")
+print()
+
+
+media_type=input("Select media type : ")
+if media_type=="mp3":
+    name=input("Enter the audio file name: ")
+    size=input("Enter the file size (MB): ")
+    mode=input("Set the playback mode (loop/shuffle/none): ")
+
+
+#objects
+    print()
+    audio=Mp3(name,size)
+    audio.setMode(mode)
+    audio.play()
+    audio.pause()
+    audio.stop()
+
+#maglagay lang ng elif dito for your objects
+
+else:
+    print(f"Unsupported media type. Please select on the given options.")
