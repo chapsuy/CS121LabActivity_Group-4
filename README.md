@@ -2,10 +2,10 @@
 
 ## Team Members
 
--Bautista, Angelica G.
--De Castro, Aaron Rovic D.
--Macalalad, Ivan A.
--Maeda, Josefu S.
+- Bautista, Angelica G.
+- De Castro, Aaron Rovic D.
+- Macalalad, Ivan A.
+- Maeda, Josefu S.
 
 
 ## Description
