@@ -1,6 +1,6 @@
 # ByteBeats
 
-##Team Members
+## Team Members
 
 -Bautista, Angelica G.
 -De Castro, Aaron Rovic D.
@@ -27,6 +27,6 @@
    ```bash
    python3 Bytebeats.py
 
-##Acknowledgements
+## Acknowledgements
    
 
