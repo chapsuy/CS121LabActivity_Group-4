@@ -2,7 +2,7 @@
 
 ## Team Members
 
-Bautista, Angelica G.
+[Bautista, Angelica G.]
 De Castro, Aaron Rovic D.
 Macalalad, Ivan A.
 Maeda, Josefu S.
