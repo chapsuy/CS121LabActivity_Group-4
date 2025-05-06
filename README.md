@@ -44,8 +44,7 @@
 
 1. **Open terminal & Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/bytebeats.git
-   
+   git clone https://github.com/chapsuy/CS121LabActivity_Group-4
 2. **Open the directory**
    ```bash
    cd CS121LabActivity_Group-4
