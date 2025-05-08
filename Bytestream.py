@@ -1,7 +1,7 @@
 #Clearing Screen
 import os
 import platform 
-  def clear_screen():
+def clear_screen():
     if platform.system() == "Windows":
         os.system("cls")
     else:
@@ -158,7 +158,8 @@ $$\   $$ |  $$ |$$\ $$ |      $$   ____|$$  __$$ |$$ | $$ | $$ |
 """)
     print("="*59)
     print("\nMedia Files :\n")
-    print(" [1]. Mp3\n [2]. Mp4\n [3]. Wav\n [4]. MOV\n [5]. Exit\n") 
+    print(" [1]. Mp3\n [2]. Mp4\n [3]. Wav\n [4]. MOV\n [5]. Exit\n")
+    media_type=input("Select media type : ")
     clear_screen()
 
     if media_type == "1":
