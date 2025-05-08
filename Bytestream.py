@@ -1,4 +1,9 @@
-
+#Clearing Screen
+import os                                                                        import platform                                                                            def clear_screen():
+    if platform.system() == "Windows":                                                   os.system("cls")
+    else:
+        os.system("clear")
+        
 from abc import ABC, abstractmethod
 
 class MediaFile(ABC):
@@ -124,9 +129,10 @@ class Mov(MediaFile):
 
 
 #Main Program
-
-print("="*59)
-print(r"""
+while True:
+    clear_screen()
+    print("="*59)
+    print(r"""
 $$$$$$$\              $$\                                       
 $$  __$$\             $$ |                                      
 $$ |  $$ |$$\   $$\ $$$$$$\    $$$$$$\                          
@@ -147,70 +153,64 @@ $$\   $$ |  $$ |$$\ $$ |      $$   ____|$$  __$$ |$$ | $$ | $$ |
 \$$$$$$  |  \$$$$  |$$ |      \$$$$$$$\ \$$$$$$$ |$$ | $$ | $$ |
  \______/    \____/ \__|       \_______| \_______|\__| \__| \__|
 """)
+    print("="*59)
+    print("\nMedia Files :\n")
+    print(" [1]. Mp3\n [2]. Mp4\n [3]. Wav\n [4]. MOV\n [5]. Exit\n") 
+    clear_screen()
 
-print("*"*59)
-print()
-print()
-print(" [1]. MP3\n [2]. MP4\n [3]. WAV\n [4]. MOV\n")
-print()
+    if media_type == "1":
+        name = input("Enter the audio file name: ")
+        size = input("Enter the file size (MB): ")
+        mode = input("Set the playback mode (loop/shuffle/none): ")
+        clear_screen()
+        audio = Mp3(name, size)
+        audio.setMode(mode)
+        audio.play()
+        audio.pause()
+        audio.stop()
 
+    elif media_type == "2":
+        name = input("Enter the video file name: ")
+        size = input("Enter the file size (MB): ")
+        resolution = input("Enter the resolution (Ex: 1080p, 720p): ")
+        speed = input("Enter the playback speed (Ex: 0.50, 1.0, 2.0): ")
+        clear_screen()
+        video = Mp4(name, size, resolution)
+        video.setSpeed(speed)
+        video.play()
+        video.pause()
+        video.stop()
 
-media_type=input("Select media type : ")
-if media_type=="1":
-    name=input("Enter the audio file name: ")
-    size=input("Enter the file size (MB): ")
-    mode=input("Set the playback mode (loop/shuffle/none): ")
-    
-#objects
-    print()
-    audio=Mp3(name,size)
-    audio.setMode(mode)
-    audio.play()
-    audio.pause()
-    audio.stop()
-    
-elif media_type=="2":
-    name= input("Enter the video file name: ")
-    size= input("Enter the file size (MB): ")
-    resolution= input("Enter the resolution (Ex: 1080p, 720p): ")
-    speed = input("Enter the playback speed (Ex: 0.50, 1.0, 2.0): ")
-#objects
-    print()
-    video = Mp4(name, size, resolution)
-    video.setSpeed(speed)
-    video.play()
-    video.pause()
-    video.stop()
-    
-elif media_type=="3":
-    name = input("Enter the audio file name: ")
-    size = input("Enter the file size (MB): ")
-    depth = int(input("Enter the bit depth (16/24/32): "))
-    
-#objects
-    print()
-    audio = Wav(name, size)
-    audio.setBitDepth(depth)
-    audio.play()
-    audio.pause()
-    audio.stop()
+    elif media_type == "3":
+        name = input("Enter the audio file name: ")
+        size = input("Enter the file size (MB): ")
+        depth = int(input("Enter the bit depth (16/24/32): "))
+        clear_screen()
+        audio = Wav(name, size)
+        audio.setBitDepth(depth)
+        audio.play()
+        audio.pause()
+        audio.stop()
 
-elif media_type=="4":
-    name = input("Enter the video file name: ")
-    size = input("Enter the file size (MB): ")
-    frame_rate = int(input("Enter the frame rate (24, 30, 48, 60, 72): "))
-    subtitle_input = input("Does the file have subtitles? (Yes/ No): ")
-    has_subtitles = subtitle_input.strip().lower() == "yes"
+    elif media_type == "4":
+        name = input("Enter the video file name: ")
+        size = input("Enter the file size (MB): ")
+        frame_rate = input("Enter the frame rate (24, 30, 48, 60, 72): ")
+        subtitle_input = input("Does the file have subtitles? (Yes/No): ")
+        has_subtitles = subtitle_input.strip().lower() == "yes"
+        clear_screen()
+        video = Mov(name, size, has_subtitles)
+        video.setframe_rate(frame_rate)
+        video.play()
+        video.pause()
+        video.stop()
 
-#objects
-    print()
-    video = Mov(name, size, has_subtitles)
-    video.setframe_rate(frame_rate)
-    video.play()
-    video.pause()
-    video.stop()
-    
+    elif media_type == "5":
+        print("Thank you from Group 6.")
+        break
 
+    else:
+        print("Unsupported media type. Please select one of the given options.")
 
-else:
-    print(f"Unsupported media type. Please select on the given options.")
+    input("\nPress enter to return to main me
+    nu.")
