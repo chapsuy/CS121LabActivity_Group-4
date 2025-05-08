@@ -13,7 +13,7 @@ class MediaFile(ABC):
         self.file_size = file_size
 
 
-
+#Methods
     @abstractmethod
     def play(self):
         pass
@@ -47,15 +47,15 @@ class Mp3(MediaFile):
         print(f"{self.file_name}.mp3 is no longer playing.")
 
 
-#Dito Maglagay ng subclass
+#Subclass
 class Mp4(MediaFile):
     def __init__(self, file_name, file_size, resolutionmp4):
         super().__init__(file_name, file_size)
-        self.resolution = resolution
+        self.resolution = resolutionmp4
         self.playback_speed = 1.0
         
     def setSpeed(self, speed):
-        if speed.replace('.', '', 1).isdigit():  # checks if it's a number, including decimal
+        if speed.replace('.', '', 1).isdigit():  
             speed = float(speed)
             if speed > 0:
                 self.playback_speed = speed
@@ -67,7 +67,7 @@ class Mp4(MediaFile):
     def play(self):
         print(f"Now playing: {self.file_name}.mp4")
         print(f"File Size: {self.file_size}MB")
-        print(f"Resolution: {self.resolution}")
+        print(f"Resolution: {self.resolution}p")
         print(f"Playback speed: {self.playback_speed}x")
         
 
@@ -77,7 +77,7 @@ class Mp4(MediaFile):
     def stop(self):
         print(f"{self.file_name}.mp4 is no longer playing.")
 
-#Dito Maglagay ng subclass
+#Subclass
 class Wav(MediaFile):
     def __init__(self, file_name, file_size):
         super().__init__(file_name, file_size)
@@ -101,7 +101,7 @@ class Wav(MediaFile):
         print(f"{self.file_name}.wav playback stopped.")
 
 
-#Dito maglagay ng subclass
+#Subclass
 class Mov(MediaFile):
     def __init__(self, file_name, file_size, has_subtitles):
         super().__init__(file_name, file_size)
@@ -140,7 +140,7 @@ print()
 
 
 media_type=input("Select media type : ")
-if media_type=="mp3":
+if media_type=="1":
     name=input("Enter the audio file name: ")
     size=input("Enter the file size (MB): ")
     mode=input("Set the playback mode (loop/shuffle/none): ")
@@ -153,12 +153,12 @@ if media_type=="mp3":
     audio.pause()
     audio.stop()
     
-elif media_type=="mp4":
+elif media_type=="2":
     name= input("Enter the video file name: ")
     size= input("Enter the file size (MB): ")
     resolution= input("Enter the resolution (Ex: 1080p, 720p): ")
     speed = input("Enter the playback speed (Ex: 0.50, 1.0, 2.0): ")
-
+#objects
     print()
     video = Mp4(name, size, resolution)
     video.setSpeed(speed)
@@ -166,7 +166,7 @@ elif media_type=="mp4":
     video.pause()
     video.stop()
     
-elif media_type=="wav":
+elif media_type=="3":
     name = input("Enter the audio file name: ")
     size = input("Enter the file size (MB): ")
     depth = int(input("Enter the bit depth (16/24/32): "))
@@ -179,10 +179,10 @@ elif media_type=="wav":
     audio.pause()
     audio.stop()
 
-elif media_type=="mov":
+elif media_type=="4":
     name = input("Enter the video file name: ")
     size = input("Enter the file size (MB): ")
-    frame_rate = input("Enter the frame rate (24, 30, 48, 60, 72): ")
+    frame_rate = int(input("Enter the frame rate (24, 30, 48, 60, 72): "))
     subtitle_input = input("Does the file have subtitles? (Yes/ No): ")
     has_subtitles = subtitle_input.strip().lower() == "yes"
 
@@ -194,7 +194,7 @@ elif media_type=="mov":
     video.pause()
     video.stop()
     
-#maglagay lang ng elif dito for your objects
+
 
 else:
     print(f"Unsupported media type. Please select on the given options.")
