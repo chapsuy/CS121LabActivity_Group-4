@@ -1,6 +1,9 @@
 #Clearing Screen
-import os                                                                        import platform                                                                            def clear_screen():
-    if platform.system() == "Windows":                                                   os.system("cls")
+import os
+import platform 
+  def clear_screen():
+    if platform.system() == "Windows":
+        os.system("cls")
     else:
         os.system("clear")
         
@@ -212,5 +215,4 @@ $$\   $$ |  $$ |$$\ $$ |      $$   ____|$$  __$$ |$$ | $$ | $$ |
     else:
         print("Unsupported media type. Please select one of the given options.")
 
-    input("\nPress enter to return to main me
-    nu.")
+    input("\nPress enter to return to main menu.")
