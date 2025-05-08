@@ -93,14 +93,33 @@ class Wav(MediaFile):
         print(f"{self.file_name}.wav playback stopped.")
 
 
-
-
-
-
-
-
 #Dito maglagay ng subclass
+class Mov(MediaFile):
+    def __init__(self, file_name, file_size, frame_rate, has_subtitles):
+        super().__init__(file_name, file_size)
+        self.frame_rate = frame_rate
+        self.has_subtitles = has_subtitles
+        
+    def setframe_rate(self, frame_rate):
+        valid_frame_rates = [24, 30, 48, 60, 72]
+        if frame_rate in valid_frame_rates:
+            self.frame_rate = frame_rate
+        else:
+            print(f"Invalid frame rate. Setting to default (30 fps).")
+            self.frame_rate = 30
 
+    def play(self):
+        print(f"Now playing: {self.file_name}.mov")
+        print(f"File Size: {self.file_size}MB")
+        print(f"Frame Rate: {self.frame_rate}fps")
+        print(f"Subtitles Included: {'Yes' if self.has_subtitles else 'No'}")
+        
+
+    def pause(self):
+        print(f"{self.file_name}.mov is currently paused.")
+
+    def stop(self):
+        print(f"{self.file_name}.mov is no longer playing.")
 
 
 #Main Program
@@ -109,7 +128,7 @@ print("="*59)
 print("*"*59)
 print()
 print()
-print(" [1]. MP3\n [2]. MP4\n [3]. WAV\n [4].")
+print(" [1]. MP3\n [2]. MP4\n [3]. WAV\n [4]. MOV\n")
 print()
 
 
@@ -151,7 +170,21 @@ elif media_type=="wav":
     audio.play()
     audio.pause()
     audio.stop()
-    
+
+elif media_type=="mov":
+    name = input("Enter the video file name: ")
+    size = input("Enter the file size (MB): ")
+    frame_rate = input("Enter the frame rate (24, 30, 48, 60, 72): ")
+    subtitle_input = input("Does the file have subtitles? (Yes/ No): ")
+    has_subtitles = subtitle_input.strip().lower() == "yes"
+
+#objects
+    print()
+    video = Mov(name, size, frame_rate, has_subtitles)
+    video.setframe_rate(frame_rate)
+    video.play()
+    video.pause()
+    video.stop()
     
 #maglagay lang ng elif dito for your objects
 
