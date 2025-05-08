@@ -69,13 +69,28 @@ class Mp4(MediaFile):
         print(f"{self.file_name}.mp4 is no longer playing.")
 
 
-
-
-
-
-
 #Dito Maglagay ng subclass
+class Wav(MediaFile):
+    def __init__(self, file_name, file_size):
+        super().__init__(file_name, file_size)
+        self.bit_depth = 16
 
+    def setBitDepth(self, depth):
+        if depth in [16, 24, 32]:
+            self.bit_depth = depth
+        else:
+            print("Unsupported bit depth. Using default 16-bit.")
+
+    def play(self):
+        print(f"Now playing: {self.file_name}.wav")
+        print(f"File Size: {self.file_size}MB")
+        print(f"Bit Depth: {self.bit_depth}-bit")
+
+    def pause(self):
+        print(f"{self.file_name}.wav is currently paused.")
+
+    def stop(self):
+        print(f"{self.file_name}.wav playback stopped.")
 
 
 
@@ -94,7 +109,7 @@ print("="*59)
 print("*"*59)
 print()
 print()
-print(" [1]. MP3\n [2]. MP4\n [3].\n [4].")
+print(" [1]. MP3\n [2]. MP4\n [3]. WAV\n [4].")
 print()
 
 
@@ -103,8 +118,7 @@ if media_type=="mp3":
     name=input("Enter the audio file name: ")
     size=input("Enter the file size (MB): ")
     mode=input("Set the playback mode (loop/shuffle/none): ")
-
-
+    
 #objects
     print()
     audio=Mp3(name,size)
@@ -124,6 +138,21 @@ elif media_type=="mp4":
     video.play()
     video.pause()
     video.stop()
+    
+elif media_type=="wav":
+    name = input("Enter the audio file name: ")
+    size = input("Enter the file size (MB): ")
+    depth = int(input("Enter the bit depth (16/24/32): "))
+    
+#objects
+    print()
+    audio = Wav(name, size)
+    audio.setBitDepth(depth)
+    audio.play()
+    audio.pause()
+    audio.stop()
+    
+    
 #maglagay lang ng elif dito for your objects
 
 else:
