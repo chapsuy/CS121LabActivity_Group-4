@@ -1,9 +1,3 @@
-#MediaFile Program
-#Audio: MP3, WAV, FLAC, AAC.
-#Video: MP4, AVI, MKV, MOV.
-
-
-
 
 from abc import ABC, abstractmethod
 
