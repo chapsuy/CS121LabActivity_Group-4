@@ -49,7 +49,7 @@
 3. **Execute the program**
    > **Note:** Python must be installed on your computer to clone the repository [click here to download](https://www.python.org/downloads/).
    ```bash
-   python3 ByteBeats.py
+   python3 Bytestream.py
 
 ## **Acknowledgements**
    
