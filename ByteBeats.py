@@ -48,7 +48,25 @@ class Mp3(MediaFile):
 
 
 #Dito Maglagay ng subclass
+class Mp4(MediaFile):
+    def __init__(self, file_name, file_size, resolution, playback_speed):
+        super().__init__(file_name, file_size)
+        self.resolution = resolution
+        self.playback_speed = playback_speed
+        
 
+    def play(self):
+        print(f"Now playing: {self.file_name}.mp4")
+        print(f"File Size: {self.file_size}MB")
+        print(f"Resolution: {self.resolution}")
+        print(f"Playback speed: {self.playback_speed}x")
+        
+
+    def pause(self):
+        print(f"{self.file_name}.mp4 is currently paused.")
+
+    def stop(self):
+        print(f"{self.file_name}.mp4 is no longer playing.")
 
 
 
@@ -76,7 +94,7 @@ print("="*59)
 print("*"*59)
 print()
 print()
-print(" [1]. MP3\n [2].\n [3].\n [4].")
+print(" [1]. MP3\n [2]. MP4\n [3].\n [4].")
 print()
 
 
@@ -94,7 +112,18 @@ if media_type=="mp3":
     audio.play()
     audio.pause()
     audio.stop()
+    
+elif media_type=="mp4":
+    name= input("Enter the video file name: ")
+    size= input("Enter the file size (MB): ")
+    resolution= input("Enter the resolution (Ex: 1080p, 720p): ")
+    playback_speed = input("Enter the playback speed (Ex: 0.50, 1.0, 2.0): ")
 
+    print()
+    video = Mp4(name, size, resolution, playback_speed)
+    video.play()
+    video.pause()
+    video.stop()
 #maglagay lang ng elif dito for your objects
 
 else:
