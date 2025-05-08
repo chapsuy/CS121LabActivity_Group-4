@@ -103,9 +103,9 @@ class Wav(MediaFile):
 
 #Dito maglagay ng subclass
 class Mov(MediaFile):
-    def __init__(self, file_name, file_size, frame_rate, has_subtitles):
+    def __init__(self, file_name, file_size, has_subtitles):
         super().__init__(file_name, file_size)
-        self.frame_rate = frame_rate
+        self.frame_rate = 30
         self.has_subtitles = has_subtitles
         
     def setframe_rate(self, frame_rate):
@@ -114,7 +114,6 @@ class Mov(MediaFile):
             self.frame_rate = frame_rate
         else:
             print(f"Invalid frame rate. Setting to default (30 fps).")
-            self.frame_rate = 30
 
     def play(self):
         print(f"Now playing: {self.file_name}.mov")
@@ -189,7 +188,7 @@ elif media_type=="mov":
 
 #objects
     print()
-    video = Mov(name, size, frame_rate, has_subtitles)
+    video = Mov(name, size, has_subtitles)
     video.setframe_rate(frame_rate)
     video.play()
     video.pause()
