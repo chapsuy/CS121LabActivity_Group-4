@@ -49,11 +49,20 @@ class Mp3(MediaFile):
 
 #Dito Maglagay ng subclass
 class Mp4(MediaFile):
-    def __init__(self, file_name, file_size, resolution, playback_speed):
+    def __init__(self, file_name, file_size, resolutionmp4):
         super().__init__(file_name, file_size)
         self.resolution = resolution
-        self.playback_speed = playback_speed
+        self.playback_speed = 1.0
         
+    def setSpeed(self, speed):
+        if speed.replace('.', '', 1).isdigit():  # checks if it's a number, including decimal
+            speed = float(speed)
+            if speed > 0:
+                self.playback_speed = speed
+            else:
+                print("Invalid speed. Using default (1.0x).")
+        else:
+            print("Invalid input. Using default (1.0x).")
 
     def play(self):
         print(f"Now playing: {self.file_name}.mp4")
@@ -67,7 +76,6 @@ class Mp4(MediaFile):
 
     def stop(self):
         print(f"{self.file_name}.mp4 is no longer playing.")
-
 
 #Dito Maglagay ng subclass
 class Wav(MediaFile):
@@ -150,10 +158,11 @@ elif media_type=="mp4":
     name= input("Enter the video file name: ")
     size= input("Enter the file size (MB): ")
     resolution= input("Enter the resolution (Ex: 1080p, 720p): ")
-    playback_speed = input("Enter the playback speed (Ex: 0.50, 1.0, 2.0): ")
+    speed = input("Enter the playback speed (Ex: 0.50, 1.0, 2.0): ")
 
     print()
-    video = Mp4(name, size, resolution, playback_speed)
+    video = Mp4(name, size, resolution)
+    video.setSpeed(speed)
     video.play()
     video.pause()
     video.stop()
