@@ -25,8 +25,8 @@ class MediaFile(ABC):
 
 #Subclass
 class Mp3(MediaFile):
-    def __init__(self,file_name,file_size):
-        super().__init__(file_name,file_size, volume)
+    def __init__(self, file_name, file_size):
+        super().__init__(file_name, file_size, volume)
         self.mode = "none"
 
     def setMode(self,mode):
@@ -176,7 +176,7 @@ $$\   $$ |  $$ |$$\ $$ |      $$   ____|$$  __$$ |$$ | $$ | $$ |
     elif media_type == "2":
         name = input("Enter the video file name: ")
         size = input("Enter the file size (MB): ")
-        resolution = input("Enter the resolution (Ex: 1080p, 720p): ")
+        resolution = input("Enter the resolution (Ex: 1080, 720): ")
         speed = input("Enter the playback speed (Ex: 0.50, 1.0, 2.0): ")
         volume = input("Enter volume (1-100):")
         clear_screen()
