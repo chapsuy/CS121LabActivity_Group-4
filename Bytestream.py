@@ -163,9 +163,27 @@ $$\   $$ |  $$ |$$\ $$ |      $$   ____|$$  __$$ |$$ | $$ | $$ |
 
     if media_type == "1":
         name = input("Enter the audio file name: ")
-        size = input("Enter the file size (MB): ")
+        
+        while True:
+            try:
+                size = float(input("Enter the file size (MB): "))
+                if size <= 0:
+                    raise ValueError("File size must be greater than 0.")
+                break
+            except ValueError as e:
+                print(f"Invalid input: {e}. Please enter a valid file size.")
+                
         mode = input("Set the playback mode (loop/shuffle/none): ")
-        volume = input("Enter volume (1-100): ")
+        
+        while True:
+            try:
+                volume = int(input("Enter volume (1-100): "))
+                if volume < 1 or volume > 100:
+                    raise ValueError("Volume must be between 1 and 100.")
+                break
+            except ValueError as e:
+                print(f"Invalid input: {e}. Please enter a valid volume.")
+                
         clear_screen()
         audio = Mp3(name, size)
         audio.setMode(mode)
@@ -175,10 +193,36 @@ $$\   $$ |  $$ |$$\ $$ |      $$   ____|$$  __$$ |$$ | $$ | $$ |
 
     elif media_type == "2":
         name = input("Enter the video file name: ")
-        size = input("Enter the file size (MB): ")
-        resolution = input("Enter the resolution (Ex: 1080, 720): ")
+        
+        while True:
+            try:
+                size = float(input("Enter the file size (MB): "))
+                if size <= 0:
+                    raise ValueError("File size must be greater than 0.")
+                break
+            except ValueError as e:
+                print(f"Invalid input: {e}. Please enter a valid file size.")
+                
+        while True:
+            try:
+                resolution = int(input("Enter the resolution (Ex: 1080, 720): "))
+                if size <= 0:
+                    raise ValueError("File size must be greater than 0.")
+                break
+            except ValueError as e:
+                print(f"Invalid input: {e}. Please enter a valid resolution.")
+                
         speed = input("Enter the playback speed (Ex: 0.50, 1.0, 2.0): ")
-        volume = input("Enter volume (1-100):")
+        
+        while True:
+            try:
+                volume = int(input("Enter volume (1-100): "))
+                if volume < 1 or volume > 100:
+                    raise ValueError("Volume must be between 1 and 100.")
+                break
+            except ValueError as e:
+                print(f"Invalid input: {e}. Please enter a valid volume.")
+                
         clear_screen()
         video = Mp4(name, size, resolution)
         video.setSpeed(speed)
@@ -188,9 +232,27 @@ $$\   $$ |  $$ |$$\ $$ |      $$   ____|$$  __$$ |$$ | $$ | $$ |
 
     elif media_type == "3":
         name = input("Enter the audio file name: ")
-        size = input("Enter the file size (MB): ")
-        depth = int(input("Enter the bit depth (16/24/32): "))
-        volume = input("Enter volume (1-100):")
+        
+        while True:
+            try:
+                size = float(input("Enter the file size (MB): "))
+                if size <= 0:
+                    raise ValueError("File size must be greater than 0.")
+                break
+            except ValueError as e:
+                print(f"Invalid input: {e}. Please enter a valid file size.")
+                
+        depth = input("Enter the bit depth (16/24/32): ")
+        
+        while True:
+            try:
+                volume = int(input("Enter volume (1-100): "))
+                if volume < 1 or volume > 100:
+                    raise ValueError("Volume must be between 1 and 100.")
+                break
+            except ValueError as e:
+                print(f"Invalid input: {e}. Please enter a valid volume.")
+                
         clear_screen()
         audio = Wav(name, size)
         audio.setBitDepth(depth)
@@ -200,11 +262,29 @@ $$\   $$ |  $$ |$$\ $$ |      $$   ____|$$  __$$ |$$ | $$ | $$ |
 
     elif media_type == "4":
         name = input("Enter the video file name: ")
-        size = input("Enter the file size (MB): ")
+        
+        while True:
+            try:
+                size = float(input("Enter the file size (MB): "))
+                if size <= 0:
+                    raise ValueError("File size must be greater than 0.")
+                break
+            except ValueError as e:
+                print(f"Invalid input: {e}. Please enter a valid file size.")
+                
         frame_rate = input("Enter the frame rate (24, 30, 48, 60, 72): ")
         subtitle_input = input("Does the file have subtitles? (Yes/No): ")
-        volume = input("Enter volume (1-100):")
         has_subtitles = subtitle_input.strip().lower() == "yes"
+        
+        while True:
+            try:
+                volume = int(input("Enter volume (1-100): "))
+                if volume < 1 or volume > 100:
+                    raise ValueError("Volume must be between 1 and 100.")
+                break
+            except ValueError as e:
+                print(f"Invalid input: {e}. Please enter a valid volume.")
+        
         clear_screen()
         video = Mov(name, size, has_subtitles)
         video.setframe_rate(frame_rate)
