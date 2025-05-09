@@ -12,7 +12,6 @@ class MediaFile(ABC):
         self.file_size = file_size
         self.volume = volume
 
-
 #Methods
     @abstractmethod
     def play(self):
@@ -24,14 +23,15 @@ class MediaFile(ABC):
     def stop(self):
         pass
 
+#Subclass
 class Mp3(MediaFile):
     def __init__(self,file_name,file_size):
         super().__init__(file_name,file_size, volume)
-        self.mode="none"
+        self.mode = "none"
 
     def setMode(self,mode):
         if mode.lower() in ["loop","shuffle"]:
-            self.mode=mode.lower()
+            self.mode = mode.lower()
 
         else:
             self.mode="none"
@@ -46,7 +46,6 @@ class Mp3(MediaFile):
         print(f"\n{self.file_name}.mp3 is currently paused.")
     def stop(self):
         print(f"{self.file_name}.mp3 is no longer playing.")
-
 
 #Subclass
 class Mp4(MediaFile):
@@ -72,7 +71,6 @@ class Mp4(MediaFile):
         print(f"\033[1mPlayback speed\033[0m: {self.playback_speed}x")
         print(f"\033[1mVolume\033[0m: {volume}%")
         
-
     def pause(self):
         print(f"\n{self.file_name}.mp4 is currently paused.")
 
@@ -103,7 +101,6 @@ class Wav(MediaFile):
     def stop(self):
         print(f"{self.file_name}.wav playback stopped.")
 
-
 #Subclass
 class Mov(MediaFile):
     def __init__(self, file_name, file_size, has_subtitles):
@@ -125,7 +122,6 @@ class Mov(MediaFile):
         print(f"\033[1mSubtitles Included\033[0m: {'Yes' if self.has_subtitles else 'No'}")
         print(f"\033[1mVolume\033[0m: {volume}%")
         
-
     def pause(self):
         print(f"\n{self.file_name}.mov is currently paused.")
 
