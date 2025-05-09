@@ -1,18 +1,16 @@
 #Clearing Screen
 import os
-import platform 
+
 def clear_screen():
-    if platform.system() == "Windows":
-        os.system("cls")
-    else:
-        os.system("clear")
+    os.system('cls' if os.name == 'nt' else 'clear')
         
 from abc import ABC, abstractmethod
 
 class MediaFile(ABC):
-    def __init__(self,file_name,file_size):
+    def __init__(self,file_name,file_size, volume):
         self.file_name = file_name
         self.file_size = file_size
+        self.volume = volume
 
 
 #Methods
@@ -28,7 +26,7 @@ class MediaFile(ABC):
 
 class Mp3(MediaFile):
     def __init__(self,file_name,file_size):
-        super().__init__(file_name,file_size)
+        super().__init__(file_name,file_size, volume)
         self.mode="none"
 
     def setMode(self,mode):
@@ -39,12 +37,13 @@ class Mp3(MediaFile):
             self.mode="none"
 
     def play(self):
-        print(f"Now playing: {self.file_name}.mp3")
-        print(f"File Size:{self.file_size}MB")
-        print(f"Mode is set to: {self.mode}")
+        print(f"\033[1mNow playing\033[0m: {self.file_name}.mp3")
+        print(f"\033[1mFile Size\033[0m: {self.file_size}MB")
+        print(f"\033[1mMode is set\033[0m: {self.mode}")
+        print(f"\033[1mVolume\033[0m: {volume}%")
 
     def pause(self):
-        print(f"{self.file_name}.mp3 is currently paused.")
+        print(f"\n{self.file_name}.mp3 is currently paused.")
     def stop(self):
         print(f"{self.file_name}.mp3 is no longer playing.")
 
@@ -52,7 +51,7 @@ class Mp3(MediaFile):
 #Subclass
 class Mp4(MediaFile):
     def __init__(self, file_name, file_size, resolutionmp4):
-        super().__init__(file_name, file_size)
+        super().__init__(file_name, file_size, volume)
         self.resolution = resolutionmp4
         self.playback_speed = 1.0
         
@@ -67,14 +66,15 @@ class Mp4(MediaFile):
             print("Invalid input. Using default (1.0x).")
 
     def play(self):
-        print(f"Now playing: {self.file_name}.mp4")
-        print(f"File Size: {self.file_size}MB")
-        print(f"Resolution: {self.resolution}p")
-        print(f"Playback speed: {self.playback_speed}x")
+        print(f"\033[1mNow playing\033[0m: {self.file_name}.mp4")
+        print(f"\033[1mFile Size\033[0m: {self.file_size}MB")
+        print(f"\033[1mResolution\033[0m: {self.resolution}p")
+        print(f"\033[1mPlayback speed\033[0m: {self.playback_speed}x")
+        print(f"\033[1mVolume\033[0m: {volume}%")
         
 
     def pause(self):
-        print(f"{self.file_name}.mp4 is currently paused.")
+        print(f"\n{self.file_name}.mp4 is currently paused.")
 
     def stop(self):
         print(f"{self.file_name}.mp4 is no longer playing.")
@@ -82,7 +82,7 @@ class Mp4(MediaFile):
 #Subclass
 class Wav(MediaFile):
     def __init__(self, file_name, file_size):
-        super().__init__(file_name, file_size)
+        super().__init__(file_name, file_size, volume)
         self.bit_depth = 16
 
     def setBitDepth(self, depth):
@@ -92,12 +92,13 @@ class Wav(MediaFile):
             print("Unsupported bit depth. Using default 16-bit.")
 
     def play(self):
-        print(f"Now playing: {self.file_name}.wav")
-        print(f"File Size: {self.file_size}MB")
-        print(f"Bit Depth: {self.bit_depth}-bit")
+        print(f"\033[1mNow playing\033[0m: {self.file_name}.wav")
+        print(f"\033[1mFile Size\033[0m: {self.file_size}MB")
+        print(f"\033[1mBit Depth\033[0m: {self.bit_depth}-bit")
+        print(f"\033[1mVolume\033[0m: {volume}%")
 
     def pause(self):
-        print(f"{self.file_name}.wav is currently paused.")
+        print(f"\n{self.file_name}.wav is currently paused.")
 
     def stop(self):
         print(f"{self.file_name}.wav playback stopped.")
@@ -106,7 +107,7 @@ class Wav(MediaFile):
 #Subclass
 class Mov(MediaFile):
     def __init__(self, file_name, file_size, has_subtitles):
-        super().__init__(file_name, file_size)
+        super().__init__(file_name, file_size, volume)
         self.frame_rate = 30
         self.has_subtitles = has_subtitles
         
@@ -118,14 +119,15 @@ class Mov(MediaFile):
             print(f"Invalid frame rate. Setting to default (30 fps).")
 
     def play(self):
-        print(f"Now playing: {self.file_name}.mov")
-        print(f"File Size: {self.file_size}MB")
-        print(f"Frame Rate: {self.frame_rate}fps")
-        print(f"Subtitles Included: {'Yes' if self.has_subtitles else 'No'}")
+        print(f"\033[1mNow playing\033[0m: {self.file_name}.mov")
+        print(f"\033[1mFile Size\033[0m: {self.file_size}MB")
+        print(f"\033[1mFrame Rate\033[0m: {self.frame_rate}fps")
+        print(f"\033[1mSubtitles Included\033[0m: {'Yes' if self.has_subtitles else 'No'}")
+        print(f"\033[1mVolume\033[0m: {volume}%")
         
 
     def pause(self):
-        print(f"{self.file_name}.mov is currently paused.")
+        print(f"\n{self.file_name}.mov is currently paused.")
 
     def stop(self):
         print(f"{self.file_name}.mov is no longer playing.")
@@ -157,8 +159,9 @@ $$\   $$ |  $$ |$$\ $$ |      $$   ____|$$  __$$ |$$ | $$ | $$ |
  \______/    \____/ \__|       \_______| \_______|\__| \__| \__|
 """)
     print("="*59)
-    print("\nMedia Files :\n")
-    print(" [1]. Mp3\n [2]. Mp4\n [3]. Wav\n [4]. MOV\n [5]. Exit\n")
+    print("\033[1mMedia Files:\033[0m")
+    print("="*59)
+    print(" [1] Mp3\n [2] Mp4\n [3] Wav\n [4] MOV\n [5] Exit\n")
     media_type=input("Select media type : ")
     clear_screen()
 
@@ -166,6 +169,7 @@ $$\   $$ |  $$ |$$\ $$ |      $$   ____|$$  __$$ |$$ | $$ | $$ |
         name = input("Enter the audio file name: ")
         size = input("Enter the file size (MB): ")
         mode = input("Set the playback mode (loop/shuffle/none): ")
+        volume = input("Enter volume (1-100): ")
         clear_screen()
         audio = Mp3(name, size)
         audio.setMode(mode)
@@ -178,6 +182,7 @@ $$\   $$ |  $$ |$$\ $$ |      $$   ____|$$  __$$ |$$ | $$ | $$ |
         size = input("Enter the file size (MB): ")
         resolution = input("Enter the resolution (Ex: 1080p, 720p): ")
         speed = input("Enter the playback speed (Ex: 0.50, 1.0, 2.0): ")
+        volume = input("Enter volume (1-100):")
         clear_screen()
         video = Mp4(name, size, resolution)
         video.setSpeed(speed)
@@ -189,6 +194,7 @@ $$\   $$ |  $$ |$$\ $$ |      $$   ____|$$  __$$ |$$ | $$ | $$ |
         name = input("Enter the audio file name: ")
         size = input("Enter the file size (MB): ")
         depth = int(input("Enter the bit depth (16/24/32): "))
+        volume = input("Enter volume (1-100):")
         clear_screen()
         audio = Wav(name, size)
         audio.setBitDepth(depth)
@@ -201,6 +207,7 @@ $$\   $$ |  $$ |$$\ $$ |      $$   ____|$$  __$$ |$$ | $$ | $$ |
         size = input("Enter the file size (MB): ")
         frame_rate = input("Enter the frame rate (24, 30, 48, 60, 72): ")
         subtitle_input = input("Does the file have subtitles? (Yes/No): ")
+        volume = input("Enter volume (1-100):")
         has_subtitles = subtitle_input.strip().lower() == "yes"
         clear_screen()
         video = Mov(name, size, has_subtitles)
