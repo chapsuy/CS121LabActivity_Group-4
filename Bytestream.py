@@ -7,7 +7,7 @@ def clear_screen():
 from abc import ABC, abstractmethod
 
 class MediaFile(ABC):
-    def __init__(self,file_name,file_size, volume):
+    def __init__(self, file_name, file_size, volume):
         self.file_name = file_name
         self.file_size = file_size
         self.volume = volume
