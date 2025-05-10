@@ -66,7 +66,7 @@ class Audio(MediaFile):
     def set_volume(self, volume):
         self.volume = max(0, min(100, volume))
         print(f"🔊 Volume set to {self.volume}%")
-def set_playback_mode(self, mode):
+    def set_playback_mode(self, mode):
         if mode.lower() in ["normal", "loop", "shuffle"]:
             self.playback_mode = mode.lower()
         else:
@@ -74,25 +74,24 @@ def set_playback_mode(self, mode):
 
     def playback_controls(self):
         while self.is_playing:
-            action = input("\n🎛️  Controls: [A] Keep playing | [B] Pause | [C] Stop: ").upper()
+              action = input("\n🎛️  Controls: [A] Keep playing | [B] Pause | [C] Stop: ").upper()
+              if action == "B":
+                  self.pause()
+                  while self.is_paused:
+                      action = input("\n⏸️  Paused: [A] Resume | [C] Stop: ").upper()
+                      if action == "A":
+                          self.pause()  # This will resume
+                      elif action == "C":
+                          self.stop()
+                          return
+              elif action == "C":
+                  self.stop()
+                  return
+              elif action != "A":
+                  print("❌ Invalid input. Try again.")
 
-            if action == "B":
-                self.pause()
-                while self.is_paused:
-                    action = input("\n⏸️  Paused: [A] Resume | [C] Stop: ").upper()
-                    if action == "A":
-                        self.pause()  # This will resume
-                    elif action == "C":
-                        self.stop()
-                        return
-            elif action == "C":
-                self.stop()
-                return
-            elif action != "A":
-                print("❌ Invalid input. Try again.")
-
-            if not self.is_paused:
-                print(f"\n🎶 Now playing: {self.file_name}...")
+              if not self.is_paused:
+                  print(f"\n🎶 Now playing: {self.file_name}...")
 
     def play(self):
         self.is_playing = True
