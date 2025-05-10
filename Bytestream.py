@@ -10,13 +10,13 @@ def clear_screen():
 
 class MediaFile(ABC):
     def __init__(self, file_name, file_size, file_format):
-        self.file_name = file_name
+        self.file_name = file_name #PROPERTIES
         self.file_size = file_size
         self.file_format = file_format
         self.is_playing = False
         self.is_paused = False
-
-    @abstractmethod
+#METHODS
+    @abstractmethod #abstractmethod
     def play(self):
         pass
 
@@ -53,7 +53,7 @@ class MediaFile(ABC):
                 print("❌ Invalid input. Try again.")
 
             if not self.is_paused:
-                # This will be overridden by child classes
+                # OVERRIDEN of child classes
                 print(f"\n🎶 Now playing: {self.file_name}...")
 
 class Audio(MediaFile):
@@ -74,24 +74,24 @@ class Audio(MediaFile):
 
     def playback_controls(self):
         while self.is_playing:
-              action = input("\n🎛️  Controls: [A] Keep playing | [B] Pause | [C] Stop: ").upper()
-              if action == "B":
-                  self.pause()
-                  while self.is_paused:
-                      action = input("\n⏸️  Paused: [A] Resume | [C] Stop: ").upper()
-                      if action == "A":
-                          self.pause()  # This will resume
-                      elif action == "C":
-                          self.stop()
-                          return
-              elif action == "C":
-                  self.stop()
-                  return
-              elif action != "A":
-                  print("❌ Invalid input. Try again.")
+            action = input("\n🎛️  Controls: [A] Keep playing | [B] Pause | [C] Stop: ").upper()
+            if action == "B":
+                self.pause()
+                while self.is_paused:
+                    action = input("\n⏸️  Paused: [A] Resume | [C] Stop: ").upper()
+                    if action == "A":
+                        self.pause()  # This will resume
+                    elif action == "C":
+                        self.stop()
+                        return
+            elif action == "C":
+                self.stop()
+                return
+            elif action != "A":
+                print("❌ Invalid input. Try again.")
 
-              if not self.is_paused:
-                  print(f"\n🎶 Now playing: {self.file_name}...")
+            if not self.is_paused:
+                print(f"\n🎶 Now playing: {self.file_name}...")
 
     def play(self):
         self.is_playing = True
@@ -165,7 +165,7 @@ class Image(MediaFile):
         self.zoom = 100
 
     def set_brightness(self, value):
-            self.brightness = max(0, min(100, value))
+        self.brightness = max(0, min(100, value))
         print(f"☀️ Brightness: {self.brightness}%")
 
     def set_contrast(self, value):
@@ -195,7 +195,7 @@ class Image(MediaFile):
                 while self.is_paused:
                     action = input("\n⏸️  Paused: [A] Continue viewing | [C] Close: ").upper()
                     if action == "A":
-                        self.pause()  #  resume
+                        self.pause()  # resume
                     elif action == "C":
                         self.stop()
                         return
@@ -256,12 +256,12 @@ class TextDocument(MediaFile):
     def pause(self):
         print("🔄 Resetting document view")
         # mag rereset
-
+#methods
     def stop(self):
         print("❌ Closing document")
         self.is_playing = False
         self.is_paused = False
-
+#methods
     def playback_controls(self):
         while self.is_playing:
             action = input("\n🎛️  Controls: [A] Keep reading | [B] Reset view | [C] Close: ").upper()
@@ -283,7 +283,8 @@ class TextDocument(MediaFile):
 
             if not self.is_paused:
                 print(f"\n📖 Reading: {self.file_name}...")
-     def play(self):
+#methods
+    def play(self):
         if self.is_playing:
             print("ℹ️ This document is already open")
             return
@@ -299,6 +300,8 @@ class TextDocument(MediaFile):
         print("This would show the actual document content...")
         print("---------------------------")
         self.playback_controls()
+
+#Main Program
 while True:
     clear_screen()
     print("="*59)
@@ -424,5 +427,3 @@ $$\   $$ |  $$ |$$\ $$ |      $$   ____|$$  __$$ |$$ | $$ | $$ |
         print("❌ Unsupported media type. Please select 1-5.")
 
     input("\n👆 Press enter to return to main menu...")
-            
-            
